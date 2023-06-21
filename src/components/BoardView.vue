@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h2 v-if="winner">Winner: {{ winner }}</h2>
-    <h2 v-else>Player's Move: {{ player }}</h2>
+    <h2 v-if="winner">贏家 : {{ winner }}</h2>
+    <h2 v-else>目前玩家 : {{ player }}</h2>
     <button @click="reset" class="btn btn-success mb-3">Reset</button>
     <div v-for="x in 3" :key="x" class="row">
       <button v-for="y in 3" :key="y" class="square" @click.stop="move(x, y)">
@@ -9,9 +9,9 @@
       </button>
     </div>
 
-    <h2 class="mt-5">History</h2>
+    <h2 class="mt-5">戰機</h2>
     <div v-for="(game, idx) in history" :key="idx">
-      Game {{ idx + 1 }}: {{ game }} won
+      第{{ idx + 1 }}回合 : {{ game }} 贏囉！
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@
 import { computed, onMounted, ref, watch } from "vue";
 
 const calculateWinner = (squares) => {
+
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -75,8 +76,8 @@ onMounted(() => {
 
 <style scoped>
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: pink;
+  border: 1px solid white;
   float: left;
   font-size: 70px;
   font-weight: bold;
